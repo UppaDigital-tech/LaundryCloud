@@ -10,61 +10,194 @@ import hmac
 from datetime import datetime
 
 # License pricing configuration
-LICENSE_PLANS = {
-    "basic": {
-        "name": "Basic Plan",
-        "price": 29.99,
-        "currency": "USD",
-        "max_users": 5,
-        "max_orders_per_month": 1000,
-        "features": {
-            "pos_enabled": True,
-            "delivery_enabled": False,
-            "reports_enabled": False
+def get_regional_pricing():
+    """Get pricing based on configured payment gateway"""
+    payment_gateway = frappe.conf.get("laundrycloud_payment_gateway", "stripe")
+    
+    if payment_gateway == "paystack":
+        # Get preferred currency from config, default to NGN
+        preferred_currency = frappe.conf.get("laundrycloud_currency", "NGN")
+        
+        if preferred_currency == "GHS":
+            # Ghana Cedis pricing
+            return {
+                "basic": {
+                    "name": "Basic Plan",
+                    "price": 180,  # GH₵180
+                    "currency": "GHS",
+                    "max_users": 5,
+                    "max_orders_per_month": 1000,
+                    "features": {
+                        "pos_enabled": True,
+                        "delivery_enabled": False,
+                        "reports_enabled": False
+                    }
+                },
+                "professional": {
+                    "name": "Professional Plan", 
+                    "price": 480,  # GH₵480
+                    "currency": "GHS",
+                    "max_users": 15,
+                    "max_orders_per_month": 5000,
+                    "features": {
+                        "pos_enabled": True,
+                        "delivery_enabled": True,
+                        "reports_enabled": True
+                    }
+                },
+                "enterprise": {
+                    "name": "Enterprise Plan",
+                    "price": 1200,  # GH₵1,200
+                    "currency": "GHS", 
+                    "max_users": -1,  # Unlimited
+                    "max_orders_per_month": -1,  # Unlimited
+                    "features": {
+                        "pos_enabled": True,
+                        "delivery_enabled": True,
+                        "reports_enabled": True
+                    }
+                }
+            }
+        elif preferred_currency == "ZAR":
+            # South African Rand pricing
+            return {
+                "basic": {
+                    "name": "Basic Plan",
+                    "price": 450,  # R450
+                    "currency": "ZAR",
+                    "max_users": 5,
+                    "max_orders_per_month": 1000,
+                    "features": {
+                        "pos_enabled": True,
+                        "delivery_enabled": False,
+                        "reports_enabled": False
+                    }
+                },
+                "professional": {
+                    "name": "Professional Plan", 
+                    "price": 1200,  # R1,200
+                    "currency": "ZAR",
+                    "max_users": 15,
+                    "max_orders_per_month": 5000,
+                    "features": {
+                        "pos_enabled": True,
+                        "delivery_enabled": True,
+                        "reports_enabled": True
+                    }
+                },
+                "enterprise": {
+                    "name": "Enterprise Plan",
+                    "price": 3000,  # R3,000
+                    "currency": "ZAR", 
+                    "max_users": -1,  # Unlimited
+                    "max_orders_per_month": -1,  # Unlimited
+                    "features": {
+                        "pos_enabled": True,
+                        "delivery_enabled": True,
+                        "reports_enabled": True
+                    }
+                }
+            }
+        else:
+            # Default Nigerian pricing in Naira
+            return {
+                "basic": {
+                    "name": "Basic Plan",
+                    "price": 15000,  # ₦15,000
+                    "currency": "NGN",
+                    "max_users": 5,
+                    "max_orders_per_month": 1000,
+                    "features": {
+                        "pos_enabled": True,
+                        "delivery_enabled": False,
+                        "reports_enabled": False
+                    }
+                },
+                "professional": {
+                    "name": "Professional Plan", 
+                    "price": 40000,  # ₦40,000
+                    "currency": "NGN",
+                    "max_users": 15,
+                    "max_orders_per_month": 5000,
+                    "features": {
+                        "pos_enabled": True,
+                        "delivery_enabled": True,
+                        "reports_enabled": True
+                    }
+                },
+                "enterprise": {
+                    "name": "Enterprise Plan",
+                    "price": 100000,  # ₦100,000
+                    "currency": "NGN", 
+                    "max_users": -1,  # Unlimited
+                    "max_orders_per_month": -1,  # Unlimited
+                    "features": {
+                        "pos_enabled": True,
+                        "delivery_enabled": True,
+                        "reports_enabled": True
+                    }
+                }
+            }
+    else:
+        # Default USD pricing
+        return {
+            "basic": {
+                "name": "Basic Plan",
+                "price": 29.99,
+                "currency": "USD",
+                "max_users": 5,
+                "max_orders_per_month": 1000,
+                "features": {
+                    "pos_enabled": True,
+                    "delivery_enabled": False,
+                    "reports_enabled": False
+                }
+            },
+            "professional": {
+                "name": "Professional Plan", 
+                "price": 79.99,
+                "currency": "USD",
+                "max_users": 15,
+                "max_orders_per_month": 5000,
+                "features": {
+                    "pos_enabled": True,
+                    "delivery_enabled": True,
+                    "reports_enabled": True
+                }
+            },
+            "enterprise": {
+                "name": "Enterprise Plan",
+                "price": 199.99,
+                "currency": "USD", 
+                "max_users": -1,  # Unlimited
+                "max_orders_per_month": -1,  # Unlimited
+                "features": {
+                    "pos_enabled": True,
+                    "delivery_enabled": True,
+                    "reports_enabled": True
+                }
+            }
         }
-    },
-    "professional": {
-        "name": "Professional Plan", 
-        "price": 79.99,
-        "currency": "USD",
-        "max_users": 15,
-        "max_orders_per_month": 5000,
-        "features": {
-            "pos_enabled": True,
-            "delivery_enabled": True,
-            "reports_enabled": True
-        }
-    },
-    "enterprise": {
-        "name": "Enterprise Plan",
-        "price": 199.99,
-        "currency": "USD", 
-        "max_users": -1,  # Unlimited
-        "max_orders_per_month": -1,  # Unlimited
-        "features": {
-            "pos_enabled": True,
-            "delivery_enabled": True,
-            "reports_enabled": True
-        }
-    }
-}
+
+LICENSE_PLANS = get_regional_pricing()
 
 @frappe.whitelist()
 def get_license_plans():
     """Get available license plans"""
-    return LICENSE_PLANS
+    return get_regional_pricing()
 
 @frappe.whitelist()
 def create_payment_session(plan_id, site_url, contact_email):
     """Create payment session for license purchase"""
     try:
-        if plan_id not in LICENSE_PLANS:
+        current_plans = get_regional_pricing()
+        if plan_id not in current_plans:
             return {
                 "success": False,
                 "message": "Invalid plan selected"
             }
         
-        plan = LICENSE_PLANS[plan_id]
+        plan = current_plans[plan_id]
         
         # Create payment session based on configured gateway
         payment_gateway = frappe.conf.get("laundrycloud_payment_gateway", "stripe")
@@ -75,6 +208,8 @@ def create_payment_session(plan_id, site_url, contact_email):
             return create_paypal_session(plan, site_url, contact_email)
         elif payment_gateway == "razorpay":
             return create_razorpay_session(plan, site_url, contact_email)
+        elif payment_gateway == "paystack":
+            return create_paystack_session(plan, site_url, contact_email)
         else:
             return {
                 "success": False,
@@ -254,6 +389,66 @@ def create_razorpay_session(plan, site_url, contact_email):
             "message": f"Razorpay error: {str(e)}"
         }
 
+def create_paystack_session(plan, site_url, contact_email):
+    """Create Paystack payment session"""
+    paystack_public_key = frappe.conf.get("paystack_public_key")
+    paystack_secret_key = frappe.conf.get("paystack_secret_key")
+    
+    if not paystack_public_key or not paystack_secret_key:
+        return {
+            "success": False,
+            "message": "Paystack not configured"
+        }
+    
+    try:
+        # Initialize transaction
+        transaction_data = {
+            "email": contact_email,
+            "amount": int(plan['price'] * 100),  # Paystack uses kobo (cents)
+            "currency": plan['currency'],
+            "reference": f"laundrycloud_{int(datetime.now().timestamp())}",
+            "callback_url": f"{site_url}/app/laundrycloud-license?status=success",
+            "metadata": {
+                "site_url": site_url,
+                "contact_email": contact_email,
+                "plan_id": plan['name'].lower().replace(' ', '_'),
+                "app": "laundrycloud"
+            }
+        }
+        
+        # Make API call to Paystack
+        response = requests.post(
+            "https://api.paystack.co/transaction/initialize",
+            headers={
+                "Authorization": f"Bearer {paystack_secret_key}",
+                "Content-Type": "application/json"
+            },
+            json=transaction_data
+        )
+        
+        result = response.json()
+        
+        if result.get("status"):
+            return {
+                "success": True,
+                "payment_url": result["data"]["authorization_url"],
+                "reference": result["data"]["reference"],
+                "access_code": result["data"]["access_code"],
+                "payment_method": "paystack",
+                "public_key": paystack_public_key
+            }
+        else:
+            return {
+                "success": False,
+                "message": f"Paystack error: {result.get('message', 'Unknown error')}"
+            }
+            
+    except Exception as e:
+        return {
+            "success": False,
+            "message": f"Paystack error: {str(e)}"
+        }
+
 @frappe.whitelist()
 def verify_payment_and_activate_license(payment_data):
     """Verify payment and activate license"""
@@ -266,6 +461,8 @@ def verify_payment_and_activate_license(payment_data):
             return verify_paypal_payment(payment_data)
         elif payment_method == "razorpay":
             return verify_razorpay_payment(payment_data)
+        elif payment_method == "paystack":
+            return verify_paystack_payment(payment_data)
         else:
             return {
                 "success": False,
@@ -377,12 +574,72 @@ def verify_razorpay_payment(payment_data):
         "message": "Payment verification failed"
     }
 
+def verify_paystack_payment(payment_data):
+    """Verify Paystack payment"""
+    paystack_secret_key = frappe.conf.get("paystack_secret_key")
+    reference = payment_data.get("reference")
+    
+    if not paystack_secret_key or not reference:
+        return {
+            "success": False,
+            "message": "Missing Paystack configuration or reference"
+        }
+    
+    try:
+        # Verify transaction with Paystack
+        response = requests.get(
+            f"https://api.paystack.co/transaction/verify/{reference}",
+            headers={
+                "Authorization": f"Bearer {paystack_secret_key}",
+                "Content-Type": "application/json"
+            }
+        )
+        
+        result = response.json()
+        
+        if result.get("status") and result["data"]["status"] == "success":
+            # Payment successful, extract metadata
+            metadata = result["data"]["metadata"]
+            site_url = metadata.get("site_url")
+            contact_email = metadata.get("contact_email")
+            plan_id = metadata.get("plan_id")
+            
+            # Convert amount from kobo to main currency
+            amount = result["data"]["amount"] / 100
+            currency = result["data"]["currency"]
+            
+            # Create license
+            license_doc = create_license_from_payment(
+                site_url, contact_email, plan_id,
+                amount, currency,
+                reference, "Paystack"
+            )
+            
+            return {
+                "success": True,
+                "message": "Payment verified and license activated",
+                "license_key": license_doc.license_key,
+                "activation_code": license_doc.activation_code
+            }
+        else:
+            return {
+                "success": False,
+                "message": f"Payment verification failed: {result.get('message', 'Transaction not successful')}"
+            }
+            
+    except Exception as e:
+        return {
+            "success": False,
+            "message": f"Paystack verification error: {str(e)}"
+        }
+
 def create_license_from_payment(site_url, contact_email, plan_id, amount, currency, payment_ref, payment_method):
     """Create license after successful payment"""
     
     # Find plan configuration
+    current_plans = get_regional_pricing()
     plan = None
-    for key, value in LICENSE_PLANS.items():
+    for key, value in current_plans.items():
         if key == plan_id or value['name'].lower().replace(' ', '_') == plan_id:
             plan = value
             break
@@ -437,3 +694,58 @@ def razorpay_webhook():
     """Handle Razorpay webhooks"""
     # Process Razorpay webhook events
     pass
+
+@frappe.whitelist(allow_guest=True)
+def paystack_webhook():
+    """Handle Paystack webhooks"""
+    import hashlib
+    import hmac
+    
+    try:
+        # Get webhook secret from config
+        webhook_secret = frappe.conf.get("paystack_webhook_secret")
+        if not webhook_secret:
+            frappe.log_error("Paystack webhook secret not configured")
+            return
+        
+        # Get request data
+        payload = frappe.request.data
+        signature = frappe.request.headers.get("x-paystack-signature")
+        
+        if not signature or not payload:
+            frappe.log_error("Invalid Paystack webhook request")
+            return
+        
+        # Verify signature
+        expected_signature = hmac.new(
+            webhook_secret.encode(),
+            payload,
+            hashlib.sha512
+        ).hexdigest()
+        
+        if signature != expected_signature:
+            frappe.log_error("Invalid Paystack webhook signature")
+            return
+        
+        # Process webhook event
+        import json
+        event_data = json.loads(payload)
+        
+        if event_data.get("event") == "charge.success":
+            # Handle successful charge
+            data = event_data.get("data", {})
+            reference = data.get("reference")
+            metadata = data.get("metadata", {})
+            
+            if metadata.get("app") == "laundrycloud":
+                # Verify and activate license
+                payment_data = {
+                    "payment_method": "paystack",
+                    "reference": reference
+                }
+                
+                result = verify_paystack_payment(payment_data)
+                frappe.log_error(f"Paystack webhook processed: {result}")
+        
+    except Exception as e:
+        frappe.log_error(f"Paystack webhook error: {str(e)}")

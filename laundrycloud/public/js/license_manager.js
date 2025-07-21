@@ -6,6 +6,7 @@ laundrycloud.license = {
     init: function() {
         this.check_license_status();
         this.setup_license_notifications();
+        this.check_payment_callback();
     },
     
     check_license_status: function() {
@@ -204,7 +205,7 @@ laundrycloud.license = {
                 },
                 callback: function(r) {
                     if (r.message && r.message.success) {
-                        if (r.message.payment_method === 'stripe' || r.message.payment_method === 'paypal') {
+                        if (r.message.payment_method === 'stripe' || r.message.payment_method === 'paypal' || r.message.payment_method === 'paystack') {
                             // Redirect to payment gateway
                             window.open(r.message.payment_url, '_blank');
                         } else if (r.message.payment_method === 'razorpay') {
@@ -265,6 +266,43 @@ laundrycloud.license = {
                 }
             }
         });
+    },
+    
+    verify_paystack_payment: function(reference) {
+        frappe.call({
+            method: 'laundrycloud.laundrycloud.api.payment.verify_payment_and_activate_license',
+            args: {
+                payment_data: {
+                    payment_method: 'paystack',
+                    reference: reference
+                }
+            },
+            callback: function(r) {
+                if (r.message && r.message.success) {
+                    frappe.show_alert({
+                        message: 'License activated successfully!',
+                        indicator: 'green'
+                    });
+                    laundrycloud.license.check_license_status();
+                } else {
+                    frappe.msgprint('Payment verification failed: ' + r.message.message);
+                }
+            }
+        });
+    },
+    
+    check_payment_callback: function() {
+        // Check URL parameters for payment callbacks
+        const urlParams = new URLSearchParams(window.location.search);
+        const status = urlParams.get('status');
+        const reference = urlParams.get('reference');
+        const trxref = urlParams.get('trxref'); // Paystack reference
+        
+        if (status === 'success' && (reference || trxref)) {
+            // Paystack callback
+            const paystack_ref = reference || trxref;
+            this.verify_paystack_payment(paystack_ref);
+        }
     },
     
     start_trial: function() {

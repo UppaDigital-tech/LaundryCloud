@@ -45,12 +45,23 @@ Add these to your ERPNext `site_config.json`:
 }
 ```
 
+#### Paystack Configuration
+```json
+{
+  "laundrycloud_payment_gateway": "paystack",
+  "paystack_public_key": "pk_test_...",
+  "paystack_secret_key": "sk_test_...",
+  "paystack_webhook_secret": "your_webhook_secret"
+}
+```
+
 ### 2. Install Required Dependencies
 
 Add to your `requirements.txt`:
 ```
 stripe>=5.0.0
 razorpay>=1.3.0
+paystackapi>=2.1.0
 ```
 
 ### 3. Run Migrations
