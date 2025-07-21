@@ -1,0 +1,7 @@
+LaundryCloud
+Laundry Management
+Point of Sale
+Pickup and Delivery
+Customer Portal
+Reports
+Settings

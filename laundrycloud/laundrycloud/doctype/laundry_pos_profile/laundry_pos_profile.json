@@ -1,0 +1,317 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:profile_name",
+ "creation": "2025-01-13 00:00:00",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "profile_name",
+  "company",
+  "is_default",
+  "column_break_4",
+  "branch",
+  "warehouse",
+  "cost_center",
+  "section_break_8",
+  "currency",
+  "price_list",
+  "tax_category",
+  "column_break_12",
+  "income_account",
+  "expense_account",
+  "payment_method_table",
+  "section_break_16",
+  "allow_negative_stock",
+  "allow_discount",
+  "max_discount_percentage",
+  "column_break_20",
+  "allow_customer_creation",
+  "require_customer",
+  "default_customer",
+  "section_break_24",
+  "auto_add_item_barcode",
+  "validate_stock_availability",
+  "column_break_27",
+  "print_receipt_on_payment",
+  "email_receipt",
+  "sms_receipt",
+  "section_break_31",
+  "receipt_template",
+  "receipt_footer",
+  "column_break_34",
+  "pos_theme",
+  "display_items_in_grid",
+  "items_per_page"
+ ],
+ "fields": [
+  {
+   "fieldname": "profile_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Profile Name",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Company",
+   "options": "Company",
+   "reqd": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "is_default",
+   "fieldtype": "Check",
+   "label": "Is Default"
+  },
+  {
+   "fieldname": "column_break_4",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "branch",
+   "fieldtype": "Link",
+   "label": "Branch",
+   "options": "Branch"
+  },
+  {
+   "fieldname": "warehouse",
+   "fieldtype": "Link",
+   "label": "Warehouse",
+   "options": "Warehouse",
+   "reqd": 1
+  },
+  {
+   "fieldname": "cost_center",
+   "fieldtype": "Link",
+   "label": "Cost Center",
+   "options": "Cost Center"
+  },
+  {
+   "fieldname": "section_break_8",
+   "fieldtype": "Section Break",
+   "label": "Accounting Settings"
+  },
+  {
+   "fieldname": "currency",
+   "fieldtype": "Link",
+   "label": "Currency",
+   "options": "Currency",
+   "reqd": 1
+  },
+  {
+   "fieldname": "price_list",
+   "fieldtype": "Link",
+   "label": "Price List",
+   "options": "Price List"
+  },
+  {
+   "fieldname": "tax_category",
+   "fieldtype": "Link",
+   "label": "Tax Category",
+   "options": "Tax Category"
+  },
+  {
+   "fieldname": "column_break_12",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "income_account",
+   "fieldtype": "Link",
+   "label": "Income Account",
+   "options": "Account"
+  },
+  {
+   "fieldname": "expense_account",
+   "fieldtype": "Link",
+   "label": "Expense Account",
+   "options": "Account"
+  },
+  {
+   "fieldname": "payment_method_table",
+   "fieldtype": "Table",
+   "label": "Payment Methods",
+   "options": "POS Payment Method"
+  },
+  {
+   "fieldname": "section_break_16",
+   "fieldtype": "Section Break",
+   "label": "POS Settings"
+  },
+  {
+   "default": "0",
+   "fieldname": "allow_negative_stock",
+   "fieldtype": "Check",
+   "label": "Allow Negative Stock"
+  },
+  {
+   "default": "1",
+   "fieldname": "allow_discount",
+   "fieldtype": "Check",
+   "label": "Allow Discount"
+  },
+  {
+   "default": "100",
+   "depends_on": "allow_discount",
+   "fieldname": "max_discount_percentage",
+   "fieldtype": "Percent",
+   "label": "Max Discount Percentage"
+  },
+  {
+   "fieldname": "column_break_20",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "1",
+   "fieldname": "allow_customer_creation",
+   "fieldtype": "Check",
+   "label": "Allow Customer Creation"
+  },
+  {
+   "default": "0",
+   "fieldname": "require_customer",
+   "fieldtype": "Check",
+   "label": "Require Customer"
+  },
+  {
+   "fieldname": "default_customer",
+   "fieldtype": "Link",
+   "label": "Default Customer",
+   "options": "Customer"
+  },
+  {
+   "fieldname": "section_break_24",
+   "fieldtype": "Section Break",
+   "label": "Barcode & Stock Settings"
+  },
+  {
+   "default": "1",
+   "fieldname": "auto_add_item_barcode",
+   "fieldtype": "Check",
+   "label": "Auto Add Item by Barcode"
+  },
+  {
+   "default": "1",
+   "fieldname": "validate_stock_availability",
+   "fieldtype": "Check",
+   "label": "Validate Stock Availability"
+  },
+  {
+   "fieldname": "column_break_27",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "1",
+   "fieldname": "print_receipt_on_payment",
+   "fieldtype": "Check",
+   "label": "Print Receipt on Payment"
+  },
+  {
+   "default": "1",
+   "fieldname": "email_receipt",
+   "fieldtype": "Check",
+   "label": "Email Receipt"
+  },
+  {
+   "default": "0",
+   "fieldname": "sms_receipt",
+   "fieldtype": "Check",
+   "label": "SMS Receipt"
+  },
+  {
+   "fieldname": "section_break_31",
+   "fieldtype": "Section Break",
+   "label": "Receipt Settings"
+  },
+  {
+   "fieldname": "receipt_template",
+   "fieldtype": "Link",
+   "label": "Receipt Template",
+   "options": "Print Format"
+  },
+  {
+   "fieldname": "receipt_footer",
+   "fieldtype": "Small Text",
+   "label": "Receipt Footer"
+  },
+  {
+   "fieldname": "column_break_34",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Blue",
+   "fieldname": "pos_theme",
+   "fieldtype": "Select",
+   "label": "POS Theme",
+   "options": "Blue\nGreen\nRed\nOrange\nPurple\nDark"
+  },
+  {
+   "default": "1",
+   "fieldname": "display_items_in_grid",
+   "fieldtype": "Check",
+   "label": "Display Items in Grid"
+  },
+  {
+   "default": "20",
+   "fieldname": "items_per_page",
+   "fieldtype": "Int",
+   "label": "Items Per Page"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-01-13 00:00:00",
+ "modified_by": "Administrator",
+ "module": "Point of Sale",
+ "name": "Laundry POS Profile",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "LaundryCloud Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "LaundryCloud User",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "search_fields": "profile_name,company,branch",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "profile_name",
+ "track_changes": 1
+}

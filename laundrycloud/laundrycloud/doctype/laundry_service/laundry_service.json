@@ -1,0 +1,306 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:service_name",
+ "creation": "2025-01-13 00:00:00",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "service_name",
+  "service_code",
+  "category",
+  "column_break_4",
+  "is_active",
+  "is_default",
+  "priority",
+  "section_break_8",
+  "description",
+  "instructions",
+  "column_break_11",
+  "image",
+  "icon",
+  "section_break_14",
+  "rate",
+  "currency",
+  "tax_template",
+  "column_break_18",
+  "uom",
+  "weight_based",
+  "min_weight",
+  "max_weight",
+  "section_break_23",
+  "processing_time_hours",
+  "express_time_hours",
+  "column_break_26",
+  "requires_special_care",
+  "dry_clean_only",
+  "delicate_handling",
+  "section_break_30",
+  "applicable_garments",
+  "not_applicable_garments",
+  "column_break_33",
+  "special_equipment_required",
+  "chemicals_used",
+  "section_break_36",
+  "company"
+ ],
+ "fields": [
+  {
+   "fieldname": "service_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Service Name",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "service_code",
+   "fieldtype": "Data",
+   "label": "Service Code",
+   "unique": 1
+  },
+  {
+   "fieldname": "category",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Category",
+   "options": "Dry Cleaning\nWash & Fold\nLaundromat\nIroning\nAlterations\nShoe Cleaning\nSpecialty",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_4",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "1",
+   "fieldname": "is_active",
+   "fieldtype": "Check",
+   "label": "Is Active"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_default",
+   "fieldtype": "Check",
+   "label": "Is Default"
+  },
+  {
+   "default": "5",
+   "fieldname": "priority",
+   "fieldtype": "Int",
+   "label": "Priority (1=Highest, 10=Lowest)"
+  },
+  {
+   "fieldname": "section_break_8",
+   "fieldtype": "Section Break",
+   "label": "Service Details"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Text",
+   "label": "Description"
+  },
+  {
+   "fieldname": "instructions",
+   "fieldtype": "Text",
+   "label": "Special Instructions"
+  },
+  {
+   "fieldname": "column_break_11",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "image",
+   "fieldtype": "Attach Image",
+   "label": "Service Image"
+  },
+  {
+   "fieldname": "icon",
+   "fieldtype": "Data",
+   "label": "Icon Class"
+  },
+  {
+   "fieldname": "section_break_14",
+   "fieldtype": "Section Break",
+   "label": "Pricing"
+  },
+  {
+   "fieldname": "rate",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Rate",
+   "precision": "2",
+   "reqd": 1
+  },
+  {
+   "default": "USD",
+   "fieldname": "currency",
+   "fieldtype": "Link",
+   "label": "Currency",
+   "options": "Currency"
+  },
+  {
+   "fieldname": "tax_template",
+   "fieldtype": "Link",
+   "label": "Tax Template",
+   "options": "Sales Taxes and Charges Template"
+  },
+  {
+   "fieldname": "column_break_18",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Nos",
+   "fieldname": "uom",
+   "fieldtype": "Link",
+   "label": "Unit of Measure",
+   "options": "UOM"
+  },
+  {
+   "default": "0",
+   "fieldname": "weight_based",
+   "fieldtype": "Check",
+   "label": "Weight Based Pricing"
+  },
+  {
+   "depends_on": "weight_based",
+   "fieldname": "min_weight",
+   "fieldtype": "Float",
+   "label": "Minimum Weight (kg)",
+   "precision": "3"
+  },
+  {
+   "depends_on": "weight_based",
+   "fieldname": "max_weight",
+   "fieldtype": "Float",
+   "label": "Maximum Weight (kg)",
+   "precision": "3"
+  },
+  {
+   "fieldname": "section_break_23",
+   "fieldtype": "Section Break",
+   "label": "Processing Time"
+  },
+  {
+   "default": "24",
+   "fieldname": "processing_time_hours",
+   "fieldtype": "Int",
+   "label": "Standard Processing Time (Hours)"
+  },
+  {
+   "default": "12",
+   "fieldname": "express_time_hours",
+   "fieldtype": "Int",
+   "label": "Express Processing Time (Hours)"
+  },
+  {
+   "fieldname": "column_break_26",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "requires_special_care",
+   "fieldtype": "Check",
+   "label": "Requires Special Care"
+  },
+  {
+   "default": "0",
+   "fieldname": "dry_clean_only",
+   "fieldtype": "Check",
+   "label": "Dry Clean Only"
+  },
+  {
+   "default": "0",
+   "fieldname": "delicate_handling",
+   "fieldtype": "Check",
+   "label": "Delicate Handling Required"
+  },
+  {
+   "fieldname": "section_break_30",
+   "fieldtype": "Section Break",
+   "label": "Applicability"
+  },
+  {
+   "fieldname": "applicable_garments",
+   "fieldtype": "Small Text",
+   "label": "Applicable Garments"
+  },
+  {
+   "fieldname": "not_applicable_garments",
+   "fieldtype": "Small Text",
+   "label": "Not Applicable Garments"
+  },
+  {
+   "fieldname": "column_break_33",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "special_equipment_required",
+   "fieldtype": "Small Text",
+   "label": "Special Equipment Required"
+  },
+  {
+   "fieldname": "chemicals_used",
+   "fieldtype": "Small Text",
+   "label": "Chemicals Used"
+  },
+  {
+   "fieldname": "section_break_36",
+   "fieldtype": "Section Break",
+   "label": "Company Information"
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "Company",
+   "options": "Company",
+   "reqd": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-01-13 00:00:00",
+ "modified_by": "Administrator",
+ "module": "Laundry Management",
+ "name": "Laundry Service",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "LaundryCloud Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "read": 1,
+   "report": 1,
+   "role": "LaundryCloud User"
+  }
+ ],
+ "search_fields": "service_name,category,rate",
+ "sort_field": "priority",
+ "sort_order": "ASC",
+ "states": [],
+ "title_field": "service_name",
+ "track_changes": 1
+}
