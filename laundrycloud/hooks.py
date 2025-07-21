@@ -15,7 +15,10 @@ app_version = app_version
 
 # include js, css files in header of desk.html
 app_include_css = "/assets/laundrycloud/css/laundrycloud.css"
-app_include_js = "/assets/laundrycloud/js/laundrycloud.min.js"
+app_include_js = [
+    "/assets/laundrycloud/js/laundrycloud.min.js",
+    "/assets/laundrycloud/js/license_manager.js"
+]
 
 # include js, css files in header of web template
 web_include_css = "/assets/laundrycloud/css/laundrycloud-web.css"
@@ -122,6 +125,15 @@ doc_events = {
     },
     "Customer": {
         "after_insert": "laundrycloud.api.customer.after_insert"
+    },
+    "Laundry Order": {
+        "before_save": [
+            "laundrycloud.laundrycloud.license_manager.check_usage_limits"
+        ],
+        "on_submit": [
+            "laundrycloud.laundrycloud.doctype.laundry_order.laundry_order.on_submit"
+        ],
+        "on_cancel": "laundrycloud.laundrycloud.doctype.laundry_order.laundry_order.on_cancel"
     }
 }
 
@@ -133,7 +145,8 @@ scheduler_events = {
         "laundrycloud.tasks.all"
     ],
     "daily": [
-        "laundrycloud.tasks.daily"
+        "laundrycloud.tasks.daily",
+        "laundrycloud.laundrycloud.license_manager.validate_all_licenses"
     ],
     "hourly": [
         "laundrycloud.tasks.hourly"

@@ -5,3 +5,4 @@ Pickup and Delivery
 Customer Portal
 Reports
 Settings
+Licensing

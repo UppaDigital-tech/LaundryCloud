@@ -1,7 +1,37 @@
 // LaundryCloud POS JavaScript
 class LaundryCloudPOS {
     constructor() {
-        this.init();
+        this.check_license_before_init();
+    }
+    
+    check_license_before_init() {
+        // Check license before initializing POS
+        if (window.laundrycloud && window.laundrycloud.license) {
+            laundrycloud.license.enforce_feature_access('pos', 
+                () => {
+                    this.init();
+                },
+                () => {
+                    this.show_license_required_message();
+                }
+            );
+        } else {
+            // Fallback if license manager not loaded
+            this.init();
+        }
+    }
+    
+    show_license_required_message() {
+        $('.laundrycloud-pos-wrapper').html(`
+            <div class="text-center" style="padding: 100px;">
+                <i class="fa fa-lock fa-5x text-muted"></i>
+                <h2>POS License Required</h2>
+                <p class="text-muted">This feature requires a valid LaundryCloud license.</p>
+                <button class="btn btn-primary" onclick="laundrycloud.license.show_purchase_dialog()">
+                    Get License
+                </button>
+            </div>
+        `);
     }
 
     init() {
