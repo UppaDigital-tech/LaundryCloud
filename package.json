@@ -4,14 +4,14 @@
   "description": "Comprehensive Laundry Management System for ERPNext",
   "main": "index.js",
   "scripts": {
-    "build": "../../../env/bin/python -m frappe.utils.bench_helper build --app laundrycloud",
-    "dev": "../../../env/bin/python -m frappe.utils.bench_helper build --app laundrycloud --development",
-    "watch": "../../../env/bin/python -m frappe.utils.bench_helper build --app laundrycloud --development --watch",
-    "test": "../../../env/bin/python -m frappe.utils.bench_helper test --app laundrycloud"
+    "build": "/cloudclusters/erpnext/frappe-bench/env/bin/python -m frappe.utils.bench_helper build --app laundrycloud",
+    "dev": "/cloudclusters/erpnext/frappe-bench/env/bin/python -m frappe.utils.bench_helper build --app laundrycloud --development",
+    "watch": "/cloudclusters/erpnext/frappe-bench/env/bin/python -m frappe.utils.bench_helper build --app laundrycloud --development --watch",
+    "test": "/cloudclusters/erpnext/frappe-bench/env/bin/python -m frappe.utils.bench_helper test --app laundrycloud"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/UppaDigital-tech/laundrycloud.git"
+    "url": "https://github.com/your-org/laundrycloud.git"
   },
   "keywords": [
     "erpnext",
@@ -25,9 +25,9 @@
   "author": "LaundryCloud Team",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/UppaDigital-tech/laundrycloud/issues"
+    "url": "https://github.com/your-org/laundrycloud/issues"
   },
-  "homepage": "https://github.com/UppaDigital-tech/laundrycloud#readme",
+  "homepage": "https://github.com/your-org/laundrycloud#readme",
   "dependencies": {
     "frappe-js-sdk": "^1.0.0"
   },
