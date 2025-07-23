@@ -1,0 +1,48 @@
+{
+  "name": "laundrycloud",
+  "version": "1.0.0",
+  "description": "Comprehensive Laundry Management System for ERPNext",
+  "main": "index.js",
+  "scripts": {
+    "build": "frappe build --app laundrycloud",
+    "dev": "frappe build --app laundrycloud --development",
+    "watch": "frappe build --app laundrycloud --development --watch",
+    "test": "frappe test --app laundrycloud"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-org/laundrycloud.git"
+  },
+  "keywords": [
+    "erpnext",
+    "laundry",
+    "pos",
+    "cleancloud",
+    "management",
+    "business",
+    "frappe"
+  ],
+  "author": "LaundryCloud Team",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/your-org/laundrycloud/issues"
+  },
+  "homepage": "https://github.com/your-org/laundrycloud#readme",
+  "dependencies": {
+    "frappe-js-sdk": "^1.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "webpack": "^5.0.0",
+    "webpack-cli": "^4.0.0"
+  },
+  "peerDependencies": {
+    "frappe": ">=14.0.0",
+    "erpnext": ">=14.0.0"
+  },
+  "engines": {
+    "node": ">=14.0.0",
+    "npm": ">=6.0.0"
+  }
+}

@@ -1,0 +1,443 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2025-01-13 00:00:00",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "customer",
+  "customer_name",
+  "customer_phone",
+  "customer_email",
+  "column_break_5",
+  "order_date",
+  "expected_delivery_date",
+  "actual_delivery_date",
+  "priority",
+  "section_break_10",
+  "order_type",
+  "service_type",
+  "pickup_delivery_details",
+  "pickup_address",
+  "delivery_address",
+  "column_break_16",
+  "pickup_date",
+  "pickup_time",
+  "delivery_date",
+  "delivery_time",
+  "driver",
+  "section_break_22",
+  "items",
+  "section_break_24",
+  "subtotal",
+  "tax_amount",
+  "discount_amount",
+  "column_break_28",
+  "delivery_charges",
+  "total_amount",
+  "paid_amount",
+  "outstanding_amount",
+  "section_break_33",
+  "status",
+  "workflow_state",
+  "payment_status",
+  "column_break_37",
+  "payment_method",
+  "reference_number",
+  "pos_profile",
+  "section_break_41",
+  "special_instructions",
+  "internal_notes",
+  "column_break_44",
+  "barcode",
+  "qr_code",
+  "receipt_number",
+  "section_break_48",
+  "created_by",
+  "modified_by",
+  "branch",
+  "company"
+ ],
+ "fields": [
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "LO-.YYYY.-\nLC-.YYYY.-\nWO-.YYYY.-",
+   "reqd": 1
+  },
+  {
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Customer",
+   "options": "Customer",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "customer.customer_name",
+   "fieldname": "customer_name",
+   "fieldtype": "Data",
+   "label": "Customer Name",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "customer.mobile_no",
+   "fieldname": "customer_phone",
+   "fieldtype": "Phone",
+   "label": "Phone"
+  },
+  {
+   "fetch_from": "customer.email_id",
+   "fieldname": "customer_email",
+   "fieldtype": "Data",
+   "label": "Email"
+  },
+  {
+   "fieldname": "column_break_5",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Today",
+   "fieldname": "order_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Order Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "expected_delivery_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Expected Delivery Date"
+  },
+  {
+   "fieldname": "actual_delivery_date",
+   "fieldtype": "Date",
+   "label": "Actual Delivery Date"
+  },
+  {
+   "default": "Normal",
+   "fieldname": "priority",
+   "fieldtype": "Select",
+   "label": "Priority",
+   "options": "Low\nNormal\nHigh\nUrgent"
+  },
+  {
+   "fieldname": "section_break_10",
+   "fieldtype": "Section Break",
+   "label": "Order Type & Services"
+  },
+  {
+   "default": "In-Store",
+   "fieldname": "order_type",
+   "fieldtype": "Select",
+   "label": "Order Type",
+   "options": "In-Store\nPickup & Delivery\nLocker\nSubscription",
+   "reqd": 1
+  },
+  {
+   "fieldname": "service_type",
+   "fieldtype": "Select",
+   "label": "Service Type",
+   "options": "Dry Cleaning\nWash & Fold\nLaundromat\nIroning\nAlterations\nShoe Cleaning"
+  },
+  {
+   "depends_on": "eval:doc.order_type == 'Pickup & Delivery'",
+   "fieldname": "pickup_delivery_details",
+   "fieldtype": "Section Break",
+   "label": "Pickup & Delivery Details"
+  },
+  {
+   "depends_on": "eval:doc.order_type == 'Pickup & Delivery'",
+   "fieldname": "pickup_address",
+   "fieldtype": "Small Text",
+   "label": "Pickup Address"
+  },
+  {
+   "depends_on": "eval:doc.order_type == 'Pickup & Delivery'",
+   "fieldname": "delivery_address",
+   "fieldtype": "Small Text",
+   "label": "Delivery Address"
+  },
+  {
+   "fieldname": "column_break_16",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "eval:doc.order_type == 'Pickup & Delivery'",
+   "fieldname": "pickup_date",
+   "fieldtype": "Date",
+   "label": "Pickup Date"
+  },
+  {
+   "depends_on": "eval:doc.order_type == 'Pickup & Delivery'",
+   "fieldname": "pickup_time",
+   "fieldtype": "Time",
+   "label": "Pickup Time"
+  },
+  {
+   "depends_on": "eval:doc.order_type == 'Pickup & Delivery'",
+   "fieldname": "delivery_date",
+   "fieldtype": "Date",
+   "label": "Delivery Date"
+  },
+  {
+   "depends_on": "eval:doc.order_type == 'Pickup & Delivery'",
+   "fieldname": "delivery_time",
+   "fieldtype": "Time",
+   "label": "Delivery Time"
+  },
+  {
+   "depends_on": "eval:doc.order_type == 'Pickup & Delivery'",
+   "fieldname": "driver",
+   "fieldtype": "Link",
+   "label": "Driver",
+   "options": "Employee"
+  },
+  {
+   "fieldname": "section_break_22",
+   "fieldtype": "Section Break",
+   "label": "Items"
+  },
+  {
+   "fieldname": "items",
+   "fieldtype": "Table",
+   "label": "Items",
+   "options": "Laundry Order Item",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_24",
+   "fieldtype": "Section Break",
+   "label": "Totals"
+  },
+  {
+   "fieldname": "subtotal",
+   "fieldtype": "Currency",
+   "label": "Subtotal",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "fieldname": "tax_amount",
+   "fieldtype": "Currency",
+   "label": "Tax Amount",
+   "precision": "2"
+  },
+  {
+   "fieldname": "discount_amount",
+   "fieldtype": "Currency",
+   "label": "Discount Amount",
+   "precision": "2"
+  },
+  {
+   "fieldname": "column_break_28",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "delivery_charges",
+   "fieldtype": "Currency",
+   "label": "Delivery Charges",
+   "precision": "2"
+  },
+  {
+   "fieldname": "total_amount",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Total Amount",
+   "precision": "2",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "paid_amount",
+   "fieldtype": "Currency",
+   "label": "Paid Amount",
+   "precision": "2"
+  },
+  {
+   "fieldname": "outstanding_amount",
+   "fieldtype": "Currency",
+   "label": "Outstanding Amount",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_33",
+   "fieldtype": "Section Break",
+   "label": "Status & Payment"
+  },
+  {
+   "default": "Draft",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "Draft\nReceived\nIn Progress\nWashing\nDrying\nIroning\nReady for Pickup\nOut for Delivery\nDelivered\nCompleted\nCancelled",
+   "reqd": 1
+  },
+  {
+   "fieldname": "workflow_state",
+   "fieldtype": "Link",
+   "label": "Workflow State",
+   "options": "Workflow State"
+  },
+  {
+   "default": "Unpaid",
+   "fieldname": "payment_status",
+   "fieldtype": "Select",
+   "label": "Payment Status",
+   "options": "Unpaid\nPartially Paid\nPaid\nRefunded"
+  },
+  {
+   "fieldname": "column_break_37",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "payment_method",
+   "fieldtype": "Select",
+   "label": "Payment Method",
+   "options": "Cash\nCard\nDigital Wallet\nCredit\nBank Transfer"
+  },
+  {
+   "fieldname": "reference_number",
+   "fieldtype": "Data",
+   "label": "Reference Number"
+  },
+  {
+   "fieldname": "pos_profile",
+   "fieldtype": "Link",
+   "label": "POS Profile",
+   "options": "POS Profile"
+  },
+  {
+   "fieldname": "section_break_41",
+   "fieldtype": "Section Break",
+   "label": "Additional Information"
+  },
+  {
+   "fieldname": "special_instructions",
+   "fieldtype": "Text",
+   "label": "Special Instructions"
+  },
+  {
+   "fieldname": "internal_notes",
+   "fieldtype": "Text",
+   "label": "Internal Notes"
+  },
+  {
+   "fieldname": "column_break_44",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "barcode",
+   "fieldtype": "Data",
+   "label": "Barcode",
+   "unique": 1
+  },
+  {
+   "fieldname": "qr_code",
+   "fieldtype": "Attach Image",
+   "label": "QR Code"
+  },
+  {
+   "fieldname": "receipt_number",
+   "fieldtype": "Data",
+   "label": "Receipt Number"
+  },
+  {
+   "fieldname": "section_break_48",
+   "fieldtype": "Section Break",
+   "label": "System Information"
+  },
+  {
+   "fieldname": "created_by",
+   "fieldtype": "Link",
+   "label": "Created By",
+   "options": "User",
+   "read_only": 1
+  },
+  {
+   "fieldname": "modified_by",
+   "fieldtype": "Link",
+   "label": "Modified By",
+   "options": "User",
+   "read_only": 1
+  },
+  {
+   "fieldname": "branch",
+   "fieldtype": "Link",
+   "label": "Branch",
+   "options": "Branch"
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "Company",
+   "options": "Company",
+   "reqd": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2025-01-13 00:00:00",
+ "modified_by": "Administrator",
+ "module": "Laundry Management",
+ "name": "Laundry Order",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "LaundryCloud Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "LaundryCloud User",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "search_fields": "customer_name,customer_phone,status,order_date",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "customer_name",
+ "track_changes": 1,
+ "track_seen": 1,
+ "track_views": 1
+}

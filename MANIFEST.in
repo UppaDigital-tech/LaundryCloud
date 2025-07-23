@@ -1,0 +1,18 @@
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+include *.py
+include *.txt
+recursive-include laundrycloud *.css
+recursive-include laundrycloud *.csv
+recursive-include laundrycloud *.html
+recursive-include laundrycloud *.ico
+recursive-include laundrycloud *.js
+recursive-include laundrycloud *.json
+recursive-include laundrycloud *.md
+recursive-include laundrycloud *.png
+recursive-include laundrycloud *.py
+recursive-include laundrycloud *.svg
+recursive-include laundrycloud *.txt
+recursive-exclude laundrycloud *.pyc

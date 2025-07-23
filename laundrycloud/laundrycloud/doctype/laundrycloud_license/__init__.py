@@ -1,0 +1,1 @@
+# LaundryCloud License DocType

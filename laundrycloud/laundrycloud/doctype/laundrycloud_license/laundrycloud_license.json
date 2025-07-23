@@ -1,0 +1,403 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:LC-LIC-{YYYY}-{####}",
+ "creation": "2025-01-13 00:00:00",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "license_details",
+  "license_key",
+  "license_type",
+  "status",
+  "column_break_5",
+  "site_url",
+  "company_name",
+  "contact_email",
+  "phone_number",
+  "section_break_10",
+  "license_plan",
+  "max_users",
+  "max_orders_per_month",
+  "column_break_14",
+  "features_enabled",
+  "pos_enabled",
+  "delivery_enabled",
+  "reports_enabled",
+  "section_break_19",
+  "purchase_date",
+  "activation_date",
+  "expiry_date",
+  "column_break_23",
+  "amount_paid",
+  "currency",
+  "payment_reference",
+  "payment_method",
+  "section_break_28",
+  "trial_period_days",
+  "is_trial",
+  "trial_start_date",
+  "trial_end_date",
+  "column_break_33",
+  "auto_renewal",
+  "renewal_amount",
+  "next_billing_date",
+  "section_break_37",
+  "activation_code",
+  "validation_hash",
+  "last_validated",
+  "column_break_41",
+  "hardware_fingerprint",
+  "installation_id",
+  "server_validation_url",
+  "section_break_45",
+  "usage_statistics",
+  "monthly_orders",
+  "active_users",
+  "column_break_49",
+  "last_usage_date",
+  "feature_usage_log",
+  "notes"
+ ],
+ "fields": [
+  {
+   "fieldname": "license_details",
+   "fieldtype": "Section Break",
+   "label": "License Details"
+  },
+  {
+   "fieldname": "license_key",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "License Key",
+   "read_only": 1,
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "default": "Commercial",
+   "fieldname": "license_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "License Type",
+   "options": "Trial\nCommercial\nEnterprise\nLifetime",
+   "reqd": 1
+  },
+  {
+   "default": "Inactive",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "Inactive\nActive\nExpired\nSuspended\nRevoked",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_5",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "site_url",
+   "fieldtype": "Data",
+   "label": "Site URL",
+   "reqd": 1
+  },
+  {
+   "fieldname": "company_name",
+   "fieldtype": "Data",
+   "label": "Company Name"
+  },
+  {
+   "fieldname": "contact_email",
+   "fieldtype": "Data",
+   "label": "Contact Email",
+   "options": "Email",
+   "reqd": 1
+  },
+  {
+   "fieldname": "phone_number",
+   "fieldtype": "Phone",
+   "label": "Phone Number"
+  },
+  {
+   "fieldname": "section_break_10",
+   "fieldtype": "Section Break",
+   "label": "License Plan & Features"
+  },
+  {
+   "default": "Basic",
+   "fieldname": "license_plan",
+   "fieldtype": "Select",
+   "label": "License Plan",
+   "options": "Basic\nProfessional\nEnterprise\nCustom",
+   "reqd": 1
+  },
+  {
+   "default": "5",
+   "fieldname": "max_users",
+   "fieldtype": "Int",
+   "label": "Maximum Users"
+  },
+  {
+   "default": "1000",
+   "fieldname": "max_orders_per_month",
+   "fieldtype": "Int",
+   "label": "Max Orders Per Month"
+  },
+  {
+   "fieldname": "column_break_14",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "features_enabled",
+   "fieldtype": "Section Break",
+   "label": "Features Enabled"
+  },
+  {
+   "default": "1",
+   "fieldname": "pos_enabled",
+   "fieldtype": "Check",
+   "label": "POS Enabled"
+  },
+  {
+   "default": "1",
+   "fieldname": "delivery_enabled",
+   "fieldtype": "Check",
+   "label": "Pickup & Delivery Enabled"
+  },
+  {
+   "default": "1",
+   "fieldname": "reports_enabled",
+   "fieldtype": "Check",
+   "label": "Advanced Reports Enabled"
+  },
+  {
+   "fieldname": "section_break_19",
+   "fieldtype": "Section Break",
+   "label": "Payment & Dates"
+  },
+  {
+   "fieldname": "purchase_date",
+   "fieldtype": "Date",
+   "label": "Purchase Date"
+  },
+  {
+   "fieldname": "activation_date",
+   "fieldtype": "Date",
+   "label": "Activation Date"
+  },
+  {
+   "fieldname": "expiry_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Expiry Date"
+  },
+  {
+   "fieldname": "column_break_23",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "amount_paid",
+   "fieldtype": "Currency",
+   "label": "Amount Paid",
+   "precision": "2"
+  },
+  {
+   "default": "USD",
+   "fieldname": "currency",
+   "fieldtype": "Link",
+   "label": "Currency",
+   "options": "Currency"
+  },
+  {
+   "fieldname": "payment_reference",
+   "fieldtype": "Data",
+   "label": "Payment Reference"
+  },
+  {
+   "fieldname": "payment_method",
+   "fieldtype": "Select",
+   "label": "Payment Method",
+   "options": "Credit Card\nPayPal\nStripe\nBank Transfer\nCrypto\nOther"
+  },
+  {
+   "fieldname": "section_break_28",
+   "fieldtype": "Section Break",
+   "label": "Trial & Renewal"
+  },
+  {
+   "default": "30",
+   "fieldname": "trial_period_days",
+   "fieldtype": "Int",
+   "label": "Trial Period (Days)"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_trial",
+   "fieldtype": "Check",
+   "label": "Is Trial License"
+  },
+  {
+   "depends_on": "is_trial",
+   "fieldname": "trial_start_date",
+   "fieldtype": "Date",
+   "label": "Trial Start Date"
+  },
+  {
+   "depends_on": "is_trial",
+   "fieldname": "trial_end_date",
+   "fieldtype": "Date",
+   "label": "Trial End Date"
+  },
+  {
+   "fieldname": "column_break_33",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "auto_renewal",
+   "fieldtype": "Check",
+   "label": "Auto Renewal"
+  },
+  {
+   "depends_on": "auto_renewal",
+   "fieldname": "renewal_amount",
+   "fieldtype": "Currency",
+   "label": "Renewal Amount",
+   "precision": "2"
+  },
+  {
+   "depends_on": "auto_renewal",
+   "fieldname": "next_billing_date",
+   "fieldtype": "Date",
+   "label": "Next Billing Date"
+  },
+  {
+   "fieldname": "section_break_37",
+   "fieldtype": "Section Break",
+   "label": "Validation & Security"
+  },
+  {
+   "fieldname": "activation_code",
+   "fieldtype": "Data",
+   "label": "Activation Code",
+   "read_only": 1
+  },
+  {
+   "fieldname": "validation_hash",
+   "fieldtype": "Data",
+   "label": "Validation Hash",
+   "read_only": 1
+  },
+  {
+   "fieldname": "last_validated",
+   "fieldtype": "Datetime",
+   "label": "Last Validated",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_41",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "hardware_fingerprint",
+   "fieldtype": "Data",
+   "label": "Hardware Fingerprint",
+   "read_only": 1
+  },
+  {
+   "fieldname": "installation_id",
+   "fieldtype": "Data",
+   "label": "Installation ID",
+   "read_only": 1
+  },
+  {
+   "fieldname": "server_validation_url",
+   "fieldtype": "Data",
+   "label": "Server Validation URL",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_45",
+   "fieldtype": "Section Break",
+   "label": "Usage Statistics"
+  },
+  {
+   "fieldname": "usage_statistics",
+   "fieldtype": "Long Text",
+   "label": "Usage Statistics",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "monthly_orders",
+   "fieldtype": "Int",
+   "label": "Monthly Orders",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "active_users",
+   "fieldtype": "Int",
+   "label": "Active Users",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_49",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "last_usage_date",
+   "fieldtype": "Date",
+   "label": "Last Usage Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "feature_usage_log",
+   "fieldtype": "Long Text",
+   "label": "Feature Usage Log",
+   "read_only": 1
+  },
+  {
+   "fieldname": "notes",
+   "fieldtype": "Text",
+   "label": "Notes"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-01-13 00:00:00",
+ "modified_by": "Administrator",
+ "module": "Settings",
+ "name": "LaundryCloud License",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "read": 1,
+   "role": "LaundryCloud Manager"
+  }
+ ],
+ "search_fields": "license_key,site_url,company_name,status",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "license_key",
+ "track_changes": 1,
+ "track_seen": 1,
+ "track_views": 1
+}
